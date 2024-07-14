@@ -1,7 +1,7 @@
 
 # Markdown Viewer
 
-A simple local Markdown viewer built with Python, Tkinter, and BeautifulSoup. This tool allows you to open and render Markdown files, displaying them with proper formatting and images.
+Markdown Viewer is a simple CLI tool that allows you to view Markdown files as styled HTML i
 
 ## Features
 
@@ -10,27 +10,24 @@ A simple local Markdown viewer built with Python, Tkinter, and BeautifulSoup. Th
 - Styled code blocks with a gray background and rounded corners.
 - Light gray border around the content for a cleaner look.
 
-## Requirements
+## Installation
 
-Ensure you have Python installed. Create and activate a virtual environment, then install the required dependencies:
+To install Markdown Viewer, follow these steps:
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-pip install -r requirements.txt
+1. Clone the repository or download the source code.
+2. Navigate to the directory containing the `pyproject.toml` and `markdown_viewer.py` files.
+3. Run the following command to install the package:
+
+```sh
+pip install .
 ```
-
 ## Usage
 
-1. Run the `markdown_viewer.py` script:
+Once installed, you can use the markdown_viewer command to convert and view Markdown files. The basic usage is as follows:
 
-```bash
-python markdown_viewer.py
+```sh
+markdown_viewer path/to/readme.md
 ```
-
-2. A window will open with a button to select a Markdown file. Click the button and choose the file you want to view.
-3. The Markdown content will be displayed in your default web browser with proper formatting.
-
 
 ## Contributing
 

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "markdownv"
+version = "0.1.0"
+description = "A CLI tool to view Markdown files as HTML"
+readme = "README.md"
+requires-python = ">=3.6"
+authors = [
+    { name="Estevao", email="estevaopfon@gmail.com" }
+]
+dependencies = [
+    "markdown",
+    "beautifulsoup4"
+]
+
+[project.scripts]
+markdownv = "markdownv:main"

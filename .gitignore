@@ -8,3 +8,8 @@ env/
 .env/
 
 temp.html
+
+#ignore build files
+build/
+markdownv.egg-info/
+markdownvr.egg-info/
