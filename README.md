@@ -26,7 +26,7 @@ pip install .
 Once installed, you can use the markdown_viewer command to convert and view Markdown files. The basic usage is as follows:
 
 ```sh
-markdown_viewer path/to/readme.md
+markdownv path/to/readme.md
 ```
 
 ## Contributing
