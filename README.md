@@ -15,7 +15,7 @@ Markdown Viewer is a simple CLI tool that allows you to view Markdown files as s
 To install Markdown Viewer, follow these steps:
 
 1. Clone the repository or download the source code.
-2. Navigate to the directory containing the `pyproject.toml` and `markdown_viewer.py` files.
+2. Navigate to the directory containing the `pyproject.toml` and `markdownv.py` files.
 3. Run the following command to install the package:
 
 ```sh
@@ -23,7 +23,7 @@ pip install .
 ```
 ## Usage
 
-Once installed, you can use the markdown_viewer command to convert and view Markdown files. The basic usage is as follows:
+Once installed, you can use the markdownv command to convert and view Markdown files. The basic usage is as follows:
 
 ```sh
 markdownv path/to/readme.md

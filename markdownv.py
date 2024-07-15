@@ -3,6 +3,7 @@ import markdown
 import webbrowser
 import os
 from bs4 import BeautifulSoup
+import time
 
 
 def convert_to_html_with_padding(markdown_text, base_path):
@@ -68,6 +69,12 @@ def show_html(html_content):
     with open(temp_file, "w", encoding="utf-8") as file:
         file.write(html_content)
     webbrowser.open("file://" + os.path.realpath(temp_file))
+
+    # Wait a few seconds to ensure the browser has time to open the file
+    time.sleep(1)
+
+    # Delete the temporary file
+    os.remove(temp_file)
 
 
 def main():
