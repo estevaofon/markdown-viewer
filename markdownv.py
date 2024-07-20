@@ -10,6 +10,20 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QUrl
 from pathlib import Path
+import requests
+
+
+
+
+
+def download_icon(icon_url, icon_path):
+    response = requests.get(icon_url)
+    if response.status_code == 200:
+        with open(icon_path, "wb") as file:
+            file.write(response.content)
+        print(f"Icon downloaded successfully to: {icon_path}")
+    else:
+        print(f"Failed to download icon. Status code: {response.status_code}")
 
 
 def convert_to_html_with_padding(markdown_text, base_path, scale_percentage):
@@ -98,9 +112,17 @@ class MarkdownViewer(QMainWindow):
     def __init__(self, html_content, base_path):
         super().__init__()
         self.setWindowTitle("Markdown Viewer")
-        self.setGeometry(100, 100, 900, 800)
-        if Path("icon.png").is_file():
-            self.setWindowIcon(QIcon("icon.png"))
+        self.setGeometry(100, 100, 900, 900)
+        # get file
+        ICON_URL = "https://raw.githubusercontent.com/estevaofon/markdown-viewer/develop/icon.png"
+        icon_path = Path(__file__).parent / "icon.png"
+        # check if icon exists
+        if Path(str(icon_path)).is_file():
+            self.setWindowIcon(QIcon(str(icon_path)))
+        else:
+            download_icon(ICON_URL, icon_path)
+            self.setWindowIcon(QIcon(str(icon_path)))
+
 
         central_widget = QWidget()
         layout = QVBoxLayout(central_widget)
