@@ -160,7 +160,7 @@ def main():
         "-s",
         "--scale",
         type=int,
-        default=100,
+        default=130,
         help="Scale percentage for the GUI display",
     )
     args = parser.parse_args()
