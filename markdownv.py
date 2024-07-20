@@ -74,9 +74,13 @@ def update_image_paths(html_content, base_path):
             img_path = Path(base_path) / src.strip("/")
             if img_path.is_file():
                 img["src"] = img_path.resolve().as_uri()
-                print(f"Updated image path: {img['src']}")  # Debugging line to confirm image paths
+                print(
+                    f"Updated image path: {img['src']}"
+                )  # Debugging line to confirm image paths
             else:
-                print(f"Image file not found: {img_path}")  # Debugging line for missing files
+                print(
+                    f"Image file not found: {img_path}"
+                )  # Debugging line for missing files
     return str(soup)
 
 
@@ -84,7 +88,9 @@ def show_html(html_content):
     temp_file = Path(os.getcwd()) / "temp.html"
     with open(temp_file, "w", encoding="utf-8") as file:
         file.write(html_content)
-    print(f"Temporary HTML file created at: {temp_file}")  # Debugging line to confirm file creation
+    print(
+        f"Temporary HTML file created at: {temp_file}"
+    )  # Debugging line to confirm file creation
     webbrowser.open(temp_file.as_uri())
 
     # Wait a few seconds to ensure the browser has time to open the file
@@ -108,13 +114,14 @@ class MarkdownViewer(QMainWindow):
         self.web_view = QWebEngineView()
 
         # Create a temporary file to load the HTML content with correct paths
-        import os
-        #temp_file = Path(os.getcwd()) / "temp.html"
+
         temp_file = Path(base_path) / "temp.html"
         with open(temp_file, "w", encoding="utf-8") as file:
             file.write(html_content)
 
-        print(f"Temporary HTML file created at: {temp_file}")  # Debugging line to confirm file creation
+        print(
+            f"Temporary HTML file created at: {temp_file}"
+        )  # Debugging line to confirm file creation
 
         self.web_view.setUrl(QUrl.fromLocalFile(str(temp_file)))
         layout.addWidget(self.web_view)
@@ -125,9 +132,12 @@ class MarkdownViewer(QMainWindow):
 
     def closeEvent(self, event):
         if self.temp_file.is_file():
-            print(f"Deleting temporary file: {self.temp_file}")  # Debugging line to confirm file deletion
+            print(
+                f"Deleting temporary file: {self.temp_file}"
+            )  # Debugging line to confirm file deletion
             self.temp_file.unlink()
         event.accept()
+
 
 def show_gui(html_content, base_path):
     app = QApplication(sys.argv)
@@ -136,18 +146,32 @@ def show_gui(html_content, base_path):
     viewer.show()
     sys.exit(app.exec_())
 
+
 def main():
     parser = argparse.ArgumentParser(description="View Markdown files as HTML")
     parser.add_argument("filepath", help="Path to the Markdown file")
-    parser.add_argument("-w", "--web", action="store_true", help="Display the page in a GUI window using PyQt")
-    parser.add_argument("-s", "--scale", type=int, default=100, help="Scale percentage for the GUI display")
+    parser.add_argument(
+        "-w",
+        "--web",
+        action="store_true",
+        help="Display the page in a GUI window using PyQt",
+    )
+    parser.add_argument(
+        "-s",
+        "--scale",
+        type=int,
+        default=100,
+        help="Scale percentage for the GUI display",
+    )
     args = parser.parse_args()
 
     file_path = Path(args.filepath)
     if file_path.is_file():
         with open(file_path, "r", encoding="utf-8") as file:
             markdown_text = file.read()
-            html = convert_to_html_with_padding(markdown_text, file_path.parent, args.scale)
+            html = convert_to_html_with_padding(
+                markdown_text, file_path.parent, args.scale
+            )
             base_path = os.getcwd()
             if args.web:
                 show_gui(html, base_path)
@@ -155,6 +179,7 @@ def main():
                 show_html(html)
     else:
         print(f"The file {file_path} does not exist")
+
 
 if __name__ == "__main__":
     main()
