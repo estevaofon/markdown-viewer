@@ -74,9 +74,6 @@ def update_image_paths(html_content, base_path):
             img_path = Path(base_path) / src.strip("/")
             if img_path.is_file():
                 img["src"] = img_path.resolve().as_uri()
-                print(
-                    f"Updated image path: {img['src']}"
-                )  # Debugging line to confirm image paths
             else:
                 print(
                     f"Image file not found: {img_path}"
@@ -88,9 +85,6 @@ def show_html(html_content):
     temp_file = Path(os.getcwd()) / "temp.html"
     with open(temp_file, "w", encoding="utf-8") as file:
         file.write(html_content)
-    print(
-        f"Temporary HTML file created at: {temp_file}"
-    )  # Debugging line to confirm file creation
     webbrowser.open(temp_file.as_uri())
 
     # Wait a few seconds to ensure the browser has time to open the file
@@ -119,10 +113,6 @@ class MarkdownViewer(QMainWindow):
         with open(temp_file, "w", encoding="utf-8") as file:
             file.write(html_content)
 
-        print(
-            f"Temporary HTML file created at: {temp_file}"
-        )  # Debugging line to confirm file creation
-
         self.web_view.setUrl(QUrl.fromLocalFile(str(temp_file)))
         layout.addWidget(self.web_view)
         self.setCentralWidget(central_widget)
@@ -141,7 +131,6 @@ class MarkdownViewer(QMainWindow):
 
 def show_gui(html_content, base_path):
     app = QApplication(sys.argv)
-    print(f"Base path: {base_path}")  # Debugging line to confirm base path
     viewer = MarkdownViewer(html_content, base_path)
     viewer.show()
     sys.exit(app.exec_())
