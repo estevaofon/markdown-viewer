@@ -84,6 +84,8 @@ def update_image_paths(html_content, base_path):
     soup = BeautifulSoup(html_content, "html.parser")
     for img in soup.find_all("img"):
         src = img["src"]
+        if '?raw=true' in src:
+            src = src.replace('?raw=true', '')
         if not src.startswith(("http://", "https://")):
             img_path = Path(base_path) / src.strip("/")
             if img_path.is_file():
@@ -162,8 +164,8 @@ def main():
     parser = argparse.ArgumentParser(description="View Markdown files as HTML")
     parser.add_argument("filepath", help="Path to the Markdown file")
     parser.add_argument(
-        "-w",
-        "--web",
+        "-g",
+        "--gui",
         action="store_true",
         help="Display the page in a GUI window using PyQt",
     )
@@ -184,7 +186,7 @@ def main():
                 markdown_text, file_path.parent, args.scale
             )
             base_path = os.getcwd()
-            if args.web:
+            if args.gui:
                 show_gui(html, base_path)
             else:
                 show_html(html)
