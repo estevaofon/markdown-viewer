@@ -13,7 +13,9 @@ authors = [
 ]
 dependencies = [
     "markdown",
-    "beautifulsoup4"
+    "beautifulsoup4",
+    "PyQt5",
+    "PyQtWebEngine"
 ]
 
 [project.scripts]
