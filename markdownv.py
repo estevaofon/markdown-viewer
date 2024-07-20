@@ -170,6 +170,12 @@ def main():
         help="Display the page in a GUI window using PyQt",
     )
     parser.add_argument(
+        "-w",
+        "--web",
+        action="store_true",
+        help="Display the page in the default web browser",
+    )
+    parser.add_argument(
         "-s",
         "--scale",
         type=int,
@@ -188,8 +194,10 @@ def main():
             base_path = os.getcwd()
             if args.gui:
                 show_gui(html, base_path)
-            else:
+            elif args.web:
                 show_html(html)
+            else:
+                show_gui(html, base_path)
     else:
         print(f"The file {file_path} does not exist")
 
